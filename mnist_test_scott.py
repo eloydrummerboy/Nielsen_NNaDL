@@ -15,12 +15,12 @@ import mnist_loader
 training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
 
 import network1_scott
-import network2_scott
+import network1_batch_matrix_scott
 import time
 
 import imp
 imp.reload(network1_scott)
-imp.reload(network2_scott)
+imp.reload(network1_batch_matrix_scott)
 
 
 t0 = time.time()
@@ -32,11 +32,11 @@ print("Network 2: ", t1-t0)
 
 
 t0 = time.time()
-net = network2_scott.Network([784, 30, 10])
+net = network1_batch_matrix_scott.Network([784, 30, 10])
 # data, epochs, batch_size, eta
-net.SGD(training_data, 10, 20, 3.0, test_data=test_data)
+net.SGD(training_data, 30, 20, 3.0, test_data=test_data)
 t1 = time.time()
-print("Network 2: ", t1-t0)
+print("Network 1 Vectorized: ", t1-t0)
 
 
 
